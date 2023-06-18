@@ -55,7 +55,7 @@ const Home = () => {
           <AiFillFire className="top-[-0.2rem] relative text-[#ff5a00]" />
         </h1>
         {/* ITEM LIST */}
-        <div className=" py-1 flex justify-start gap-5 ">
+        <div className=" py-1 flex justify-start gap-5 flex-wrap ">
           {favorites.map((item,index)=>{
             return(
 <div className="w-[12rem] h-max overflow-hidden  bg-gray-400 relative drop-shadow-md " key={index}>

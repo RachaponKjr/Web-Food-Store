@@ -1,11 +1,12 @@
 import React from "react";
 import { BiBasket, BiUser } from "react-icons/bi";
 import { Link, Outlet } from "react-router-dom";
+import Card from "../Components/Card";
 
 const Navber = () => {
   return (
-    <div>
-    <div className="bg-whip w-full h-16 px-16 flex items-center justify-around">
+    <div className="">
+    <div className="bg-whip w-full h-16 px-16 flex items-center justify-around drop-shadow-md">
       <div>
         <img
           src="https://upload.wikimedia.org/wikipedia/en/e/e2/IMG_Academy_Logo.svg"
@@ -34,8 +35,12 @@ const Navber = () => {
         <BiUser className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha" />
       </div>
     </div>
+    <Card/>
     <div className="px-[8rem]">
     <Outlet/>
+    </div>
+    <div className=" bg-whip w-full h-[4rem] flex justify-center items-center shadow-md mt-4">
+      <h3 className="text-mocha">Copyright © 2023 </h3>
     </div>
     </div>
   );
