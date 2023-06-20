@@ -2,51 +2,21 @@ import React, { useState,useEffect } from "react";
 import { AiFillFire, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BiFoodMenu } from "react-icons/bi";
 import { data } from "../Data/Data";
-import { datafood1 } from '../Data/DataFoodList'
+import { useAppContext } from "../Contexts/appContext";
+
 const Home = () => {
+  const [dataFood,setdataFood] = useState([])
+  const [fav,setFav] =useState([])
 
-  const [favorites, setFavorites] = useState([]);
-  const [datafood, setDataFood] = useState([]);
-  const listfav = []
-  useEffect(() => {
-    setFavorites(data);
-    setDataFood(datafood1)
-    
-  }, []);
+  const { favorites ,addToFavorites,removeToFavorites} = useAppContext()
 
-  useEffect(() => {
-    return(favorites.forEach((item)=>{
-      if(item.favorite === true){
-        listfav.push(item)
-        console.log(listfav)
-      }
-    })
-    )
-  }
-,[listfav, favorites])
+  console.log(favorites)
 
-  function handleFavorite(id) {
-    
-    const newFavorites = favorites.map(item => {
-      return item.id === id ? { ...item, favorite: !item.favorite } : undefined;
-    });
-    const newFavorites2 = datafood.map(item => {
-      return item.id === id ? { ...item, favorite: !item.favorite } : undefined;
-    });
-    for (let i = 0; i < newFavorites.length; i++) {
-        const favthis = newFavorites[i];
-        if(favthis !== undefined){
-          listfav.push(favthis)
-        }
-      }
-    for (let i = 0; i < newFavorites2.length; i++) {
-        const favthis2 = newFavorites2[i];
-        if(favthis2 !== undefined){
-          listfav.push(favthis2)
-        }
-      }
-      console.log(listfav)
-  }
+  useEffect(()=>{
+    setdataFood(data)
+    setFav(favorites)
+  },[])
+
   return (
     <div className="py-5 ">
       <div className="my-5">
@@ -56,21 +26,25 @@ const Home = () => {
         </h1>
         {/* ITEM LIST */}
         <div className=" py-1 flex justify-start gap-5 flex-wrap ">
-          {favorites.map((item,index)=>{
+          {dataFood.map((item,index)=>{
             return(
 <div className="w-[12rem] h-max overflow-hidden  bg-gray-400 relative drop-shadow-md " key={index}>
-            {item.favorite  === true ? (
+            
+            {/* {
+              favoriteChecker(item.id) ? 
               <AiFillHeart
-              onClick={() => {handleFavorite(item.id);}}
-                className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
-                
-              />
-            ) : (
-              <AiOutlineHeart
-              onClick={() => {handleFavorite(item.id);}}
-                className="absolute right-2 top-2 text-2xl cursor-pointer text-mocha hover:text-red-600 duration-500"
-              />
-            )}
+              onClick={()=>removeToFavorites(item.id)}
+              className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
+              
+            /> 
+            :   */}
+            <AiFillHeart
+              onClick={()=>addToFavorites(item)}
+            className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
+            
+          />
+            {/* } */}
+            
             <img
               src={item.imgurl}
               alt="img_Food"
@@ -97,7 +71,7 @@ const Home = () => {
           <AiFillHeart className="top-[-0.2rem] relative text-[#ff5a00]" />
         </h1>
         <div className=" py-1 flex justify-between ">  
-          {listfav.map((item,index)=>{
+          {/* {listfav.map((item,index)=>{
             return(
 <div className="w-[12rem] h-max overflow-hidden  bg-gray-400 relative drop-shadow-md " key={index}>
             {item.favorite === true ? (
@@ -125,7 +99,7 @@ const Home = () => {
             </div>
           </div>
             )
-          })}
+          })} */}
           
         </div>
           </div>
@@ -137,7 +111,7 @@ const Home = () => {
           <BiFoodMenu className="top-[-0.2rem] relative text-gray-700" />
         </h1>
         <div className=" py-1 flex justify-start flex-wrap gap-5 ">
-          {datafood.map((item,index)=>{
+          {/* {datafood.map((item,index)=>{
             return(
 <div className="w-[12rem] h-max overflow-hidden  bg-gray-400 relative drop-shadow-md " key={index}>
             {item.favorite === true ? (
@@ -165,7 +139,7 @@ const Home = () => {
             </div>
           </div>
             )
-          })}
+          })} */}
 
         </div>
         </div>
