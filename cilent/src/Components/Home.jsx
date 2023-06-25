@@ -6,16 +6,20 @@ import { useAppContext } from "../Contexts/appContext";
 
 const Home = () => {
   const [dataFood,setdataFood] = useState([])
-  const [fav,setFav] =useState([])
 
   const { favorites ,addToFavorites,removeToFavorites} = useAppContext()
 
-  console.log(favorites)
-
+  const arrFavorites = Object.values(favorites)
+  console.log(arrFavorites)
+  
   useEffect(()=>{
     setdataFood(data)
-    setFav(favorites)
   },[])
+
+  const Check = (id) =>{
+    const boolen = arrFavorites.some((item)=>item.id === id)
+    return boolen
+  }
 
   return (
     <div className="py-5 ">
@@ -30,20 +34,20 @@ const Home = () => {
             return(
 <div className="w-[12rem] h-max overflow-hidden  bg-gray-400 relative drop-shadow-md " key={index}>
             
-            {/* {
-              favoriteChecker(item.id) ? 
+            {
+              Check(item.id) ? 
               <AiFillHeart
               onClick={()=>removeToFavorites(item.id)}
               className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
               
             /> 
-            :   */}
-            <AiFillHeart
+            :  
+            <AiOutlineHeart
               onClick={()=>addToFavorites(item)}
             className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
             
           />
-            {/* } */}
+            }
             
             <img
               src={item.imgurl}
