@@ -52,7 +52,7 @@ const Home = () => {
             <img
               src={item.imgurl}
               alt="img_Food"
-              className="object-cover object-center w-full h-[8rem]"
+              className="object-cover object-center w-full h-[10rem]"
             />
             <div className="bg-white h-auto flex justify-center flex-col items-center p-2 gap-1">
             <h2 className=" text-xl text-mocha">{item.name}</h2>
@@ -88,25 +88,27 @@ const Home = () => {
           <BiFoodMenu className="top-[-0.2rem] relative text-gray-700" />
         </h1>
         <div className=" py-1 flex justify-start flex-wrap gap-5 ">
-          {/* {datafood.map((item,index)=>{
+          {dataFood.map((item,index)=>{
             return(
 <div className="w-[12rem] h-max overflow-hidden  bg-gray-400 relative drop-shadow-md " key={index}>
-            {item.favorite === true ? (
+{
+              Check(item.id) ? 
               <AiFillHeart
-              onClick={() => {handleFavorite(item.id);}}
-                className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
-                
-              />
-            ) : (
-              <AiOutlineHeart
-              onClick={() => {handleFavorite(item.id);}}
-                className="absolute right-2 top-2 text-2xl cursor-pointer text-mocha hover:text-red-600 duration-500"
-              />
-            )}
+              onClick={()=>removeToFavorites(item.id)}
+              className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
+              
+            /> 
+            :  
+            <AiOutlineHeart
+              onClick={()=>addToFavorites(item)}
+            className="absolute right-2 top-2 text-2xl cursor-pointer text-red-500 duration-500"
+            
+          />
+            }
             <img
               src={item.imgurl}
               alt="img_Food"
-              className="object-cover object-center w-full h-[8rem]"
+              className="object-cover object-center w-full h-[10rem]"
             />
             <div className="bg-white h-auto flex justify-center flex-col items-center p-2 gap-1">
             <h2 className=" text-xl text-mocha">{item.name}</h2>
@@ -116,7 +118,7 @@ const Home = () => {
             </div>
           </div>
             )
-          })} */}
+          })}
 
         </div>
         </div>

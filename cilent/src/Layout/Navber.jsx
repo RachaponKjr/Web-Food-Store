@@ -5,7 +5,7 @@ import Card from "../Components/Card";
 
 const Navber = () => {
   return (
-    <div className="">
+    <div className="flex flex-col">
     <div className="bg-whip w-full h-16 px-16 flex items-center justify-around drop-shadow-md">
       <div>
         <img
@@ -31,15 +31,14 @@ const Navber = () => {
         </ul>
       </div>
       <div className="flex gap-4">
-        <BiBasket className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha" />
+       <Link to="/cart"> <BiBasket className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha" /></Link>
         <BiUser className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha" />
       </div>
     </div>
-    <Card/>
     <div className="px-[8rem]">
     <Outlet/>
     </div>
-    <div className=" bg-whip w-full h-[4rem] flex justify-center items-center shadow-md mt-4">
+    <div className=" relative bottom-0 bg-whip w-full h-[4rem] flex justify-center items-center shadow-md mt-4">
       <h3 className="text-mocha">Copyright © 2023 </h3>
     </div>
     </div>

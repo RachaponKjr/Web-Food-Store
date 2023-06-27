@@ -5,7 +5,7 @@ const AppContext = createContext(null)
 export const useAppContext = () =>{
     const context = useContext(AppContext)
     if(context === undefined){
-        throw new Error("Error")
+        throw new Error("Context is Error!!!")
     }
     
     return context;
@@ -36,7 +36,7 @@ const AppContextProvider = ({children}) => {
                 <img
                   src={item.imgurl}
                   alt="img_Food"
-                  className="object-cover object-center w-full h-[8rem]"
+                  className="object-cover object-center w-full h-[10rem]"
                 />
                 <div className="bg-white h-auto flex justify-center flex-col items-center p-2 gap-1">
                 <h2 className=" text-xl text-mocha">{item.name}</h2>
