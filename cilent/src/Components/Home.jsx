@@ -3,14 +3,13 @@ import { AiFillFire, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BiFoodMenu } from "react-icons/bi";
 import { data } from "../Data/Data";
 import { useAppContext } from "../Contexts/appContext";
-import { useDispatch,useSelector } from "react-redux";
-import { addToCart } from "../Slice/cartSlice";
+import { useDispatch } from "react-redux";
+import { add } from "../Slice/cartSlice";
 
 const Home = () => {
   const [dataFood,setdataFood] = useState([])
-  const dispatch = useDispatch()
   const { favorites ,addToFavorites,removeToFavorites,favItem} = useAppContext()
-
+  const dispatch = useDispatch()
   const arrFavorites = Object.values(favorites)
   console.log(arrFavorites)
   
@@ -22,9 +21,10 @@ const Home = () => {
     const boolen = arrFavorites.some((item)=>item.id === id)
     return boolen
   }
-  const handleAddtoCart = (item) =>{
-    dispatch(addToCart(item))
+  const addToCart =(item) =>{
+      dispatch(add(item))  
   }
+
   return ( 
     <div className="py-5 ">
       <div className="my-5">
@@ -62,7 +62,7 @@ const Home = () => {
             <h2 className=" text-xl text-mocha">{item.name}</h2>
             
               <h4 className=" text-lg text-green-700">{item.price} ฿</h4>
-              <button onClick={handleAddtoCart(item)} className="bg-whip text-mocha hover:bg-cream hover:text-white duration-300 h-10 w-28 top-4 my-2">Add To Cart</button>
+              <button onClick={()=> addToCart(item)} className="bg-whip text-mocha hover:bg-cream hover:text-white duration-300 h-10 w-28 top-4 my-2">Add To Cart</button>
             </div>
           </div>
             )
@@ -118,7 +118,7 @@ const Home = () => {
             <h2 className=" text-xl text-mocha">{item.name}</h2>
             
               <h4 className=" text-lg text-green-700">{item.price} ฿</h4>
-              <button onClick={handleAddtoCart(item)} className="bg-whip text-mocha hover:bg-cream hover:text-white duration-300 h-10 w-28 top-4 my-2">Add To Cart</button>
+              <button  className="bg-whip text-mocha hover:bg-cream hover:text-white duration-300 h-10 w-28 top-4 my-2">Add To Cart</button>
             </div>
           </div>
             )
