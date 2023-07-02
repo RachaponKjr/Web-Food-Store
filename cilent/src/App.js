@@ -9,6 +9,9 @@ import Card from "./Components/Card";
 
 import store from "../src/store/store";
 import { Provider } from "react-redux";
+import { getTotals } from "./Slice/cartSlice";
+
+store.dispatch(getTotals())
 
 function App() {
   return (

@@ -3,16 +3,21 @@ import { AiFillFire, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BiFoodMenu } from "react-icons/bi";
 import { data } from "../Data/Data";
 import { useAppContext } from "../Contexts/appContext";
-import { useDispatch } from "react-redux";
-import { add } from "../Slice/cartSlice";
+import { useDispatch, useSelector} from "react-redux";
+import { add, getTotals } from "../Slice/cartSlice";
 
 const Home = () => {
   const [dataFood,setdataFood] = useState([])
   const { favorites ,addToFavorites,removeToFavorites,favItem} = useAppContext()
   const dispatch = useDispatch()
   const arrFavorites = Object.values(favorites)
-  console.log(arrFavorites)
-  
+
+  const cart = useSelector((start)=> start.cart)
+
+  console.log(cart)
+  useEffect(()=>{
+    dispatch(getTotals())
+  },[cart])
   useEffect(()=>{
     setdataFood(data)
   },[])
@@ -24,6 +29,7 @@ const Home = () => {
   const addToCart =(item) =>{
       dispatch(add(item))  
   }
+
 
   return ( 
     <div className="py-5 ">
@@ -123,7 +129,7 @@ const Home = () => {
           </div>
             )
           })}
-
+        
         </div>
         </div>
       <div></div>
