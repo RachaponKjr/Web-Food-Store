@@ -124,7 +124,7 @@ const Home = () => {
             <h2 className=" text-xl text-mocha">{item.name}</h2>
             
               <h4 className=" text-lg text-green-700">{item.price} ฿</h4>
-              <button  className="bg-whip text-mocha hover:bg-cream hover:text-white duration-300 h-10 w-28 top-4 my-2">Add To Cart</button>
+              <button onClick={()=> addToCart(item)}  className="bg-whip text-mocha hover:bg-cream hover:text-white duration-300 h-10 w-28 top-4 my-2">Add To Cart</button>
             </div>
           </div>
             )

@@ -1,9 +1,11 @@
 import React from "react";
 import { BiBasket, BiUser } from "react-icons/bi";
 import { Link, Outlet } from "react-router-dom";
-import Card from "../Components/Card";
+// import Card from "../Components/Card";
+import { useSelector} from "react-redux";
 
 const Navber = () => {
+  const cart = useSelector((start)=> start.cart)
   return (
     <div className="flex flex-col">
     <div className="bg-whip w-full h-16 px-16 flex items-center justify-around drop-shadow-md">
@@ -31,16 +33,21 @@ const Navber = () => {
         </ul>
       </div>
       <div className="flex gap-4">
-       <Link to="/cart"> <BiBasket className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha" /></Link>
+        <div className="relative">
+       <Link to="/cart"> <BiBasket className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha basket" />
+       </Link>
+       {cart.cartTotalQuantity > 0 ? <span className=" text-[12px] text-mocha absolute top-[-0.2rem] right-[-0.2rem] bg-red-600 p-1 w-[1.1rem] h-[1.1rem] flex items-center justify-center rounded-full">{cart.cartTotalQuantity}</span> : null}
+       </div>
         <BiUser className="p-1 w-10 h-10 rounded-full duration-[500ms] cursor-pointer hover:bg-cream text-mocha" />
       </div>
     </div>
     <div className="px-[8rem]">
     <Outlet/>
     </div>
-    <div className=" relative bottom-0 bg-whip w-full h-[4rem] flex justify-center items-center shadow-md mt-4">
+
+    {/* <div className=" relative bottom-0 bg-whip w-full h-[4rem] flex justify-center items-center shadow-md mt-4">
       <h3 className="text-mocha">Copyright © 2023 </h3>
-    </div>
+    </div> */}
     </div>
   );
 };
