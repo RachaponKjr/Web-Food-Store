@@ -1,8 +1,20 @@
-import React from "react";
-import { useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector} from "react-redux";
+import {AiOutlinePlus,AiOutlineMinus} from 'react-icons/ai'
+import { increaseItem,getTotals,decreaseItem } from "../Slice/cartSlice";
 const Card = () => {
   const {itemCart,cartTotalQuantity,cartTotalAmount} = useSelector((start)=> start.cart)
   const itemInCart = Object.values(itemCart)
+  const dispatch = useDispatch()
+  const increase = (item)=>{
+    dispatch(increaseItem(item))
+  }
+  const decrease = (item)=>{
+    dispatch(decreaseItem(item))
+  }
+  useEffect(()=>{
+   dispatch(getTotals())  
+  },[increase])
   return (
     <div className="my-6 gap-5 flex flex-col">
       <h3 className=" text-2xl pl-[7rem]">ตะกร้าสินค้า</h3>
@@ -26,7 +38,11 @@ const Card = () => {
           </div></div>
           <div className="inline-flex h-min gap-4">
             <h4>{item.price}</h4>
-            <input type="number" defaultValue={1} min="0" max="99" className=" rounded-[5px] flex text-center shadow-md w-8"/>
+            <div className=" flex justify-between items-center w-16 ">
+            <AiOutlineMinus onClick={()=> decrease(item)} className=" cursor-pointer hover:fill-red-500 duration-300 "/>
+            <h2>{item.caretQuantity}</h2>
+            <AiOutlinePlus onClick={()=> increase(item) } className=" cursor-pointer hover:fill-green-500 duration-300"/>
+            </div>
             <h3>{item.price * item.caretQuantity}</h3>
           </div>
         </div>
