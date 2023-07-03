@@ -40,4 +40,49 @@ export const data = [
         price:200,
 
     }
+    ,
+    {
+        id:7,
+        imgurl:"https://st.bigc-cs.com/public/media/catalog/product/47/88/8851952350147/8851952350147.jpg",
+        name:"น้ำเปล่า",
+        price:2000,
+
+    },
+    {
+        id:8,
+        imgurl:"https://ustatic.priceza.com/img/productgroup/83661-1-l.jpg",
+        name:"น้ำเปล่าสิง",
+        price:20,
+
+    }
+    ,
+    {
+        id:9,
+        imgurl:"https://backend.tops.co.th/media//catalog/product/8/8/8851959143711_x2_26-01-2022_2.jpg",
+        name:"น้ำเปล่าทิพ",
+        price:20000,
+
+    },
+    {
+        id:10,
+        imgurl:"https://i0.wp.com/marketeeronline.co/wp-content/uploads/2020/07/Capture.jpg?resize=472%2C474&ssl=1",
+        name:"น้ำเปล่าevi",
+        price:2,
+
+    }
+    ,
+    {
+        id:11,
+        imgurl:"https://www.starbucks.co.th/stb-media/2022/01/Coconut-butterfly-Pea_1080-600x600.png",
+        name:"น้ำเปล่าstar",
+        price:10,
+
+    },
+    {
+        id:12,
+        imgurl:"https://img.priceza.com/img2/314/0741/314-20210215044244-74781033417110672.jpg",
+        name:"น้ำเปล่าVitaday",
+        price:140,
+
+    }
   ];

@@ -27,7 +27,7 @@ const Home = () => {
     return boolen
   }
   const addToCart =(item) =>{
-      dispatch(add(item))  
+      dispatch(add(item)) 
   }
 
 
@@ -75,6 +75,9 @@ const Home = () => {
           })}
 
         </div>
+          <div className=" w-full h-[4px] flex justify-center my-[1rem]">
+            <div className="w-[25rem] rounded-[50px] opacity-50 h-[2px] bg-mocha"></div>
+          </div>
         </div>
         {/* ITEM LIST */}
 
@@ -89,6 +92,9 @@ const Home = () => {
           {favItem()}
           
         </div>
+        <div className=" w-full h-[4px] flex justify-center my-[1rem]">
+            <div className="w-[25rem] rounded-[50px] opacity-50 h-[2px] bg-mocha"></div>
+          </div>
           </div>
           {/* LIKE LIST */}
 

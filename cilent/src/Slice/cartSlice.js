@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify'
 
 const initialState = 
     {
-        itemCart:[],
+        itemCart: localStorage.getItem("carts") ? JSON.parse(localStorage.getItem("carts")) : [] ,
         cartTotalQuantity: 0,
         cartTotalAmount: 0,
     }
@@ -18,7 +19,9 @@ const cartSlice = createSlice({
                 if (findItem >=0) {
                     state.itemCart[findItem].caretQuantity += 1
                 }else{
-                    state.itemCart.push({...action.payload, caretQuantity: 1})   
+                    state.itemCart.push({...action.payload, caretQuantity: 1})
+                    toast.success(`เพิ่ม ${action.payload.name} เรียบร้อย`,{position:"bottom-right"})   
+                    localStorage.setItem("carts",JSON.stringify(state.itemCart))
                 }
         },
         removeItem(state,action){
@@ -55,10 +58,15 @@ const cartSlice = createSlice({
             state.cartTotalQuantity = quantity
             state.cartTotalAmount = total
         },
+        delItem(state, action){
+            const delItem = state.itemCart.filter((item)=>item.id !== action.payload.id)
+            state.itemCart = delItem
+            toast.warning(`ลบ ${action.payload.name} เรียบร้อย`,{position:"bottom-right"}) 
+        }
     },
 })
 
 
-export const {add,getTotals,increaseItem,decreaseItem} = cartSlice.actions
+export const {add,getTotals,increaseItem,decreaseItem,delItem} = cartSlice.actions
 
 export default cartSlice.reducer

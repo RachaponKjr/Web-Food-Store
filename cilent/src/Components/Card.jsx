@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import {AiOutlinePlus,AiOutlineMinus} from 'react-icons/ai'
-import { increaseItem,getTotals,decreaseItem } from "../Slice/cartSlice";
+import { increaseItem,getTotals,decreaseItem,delItem } from "../Slice/cartSlice";
 const Card = () => {
   const {itemCart,cartTotalQuantity,cartTotalAmount} = useSelector((start)=> start.cart)
   const itemInCart = Object.values(itemCart)
@@ -11,6 +11,9 @@ const Card = () => {
   }
   const decrease = (item)=>{
     dispatch(decreaseItem(item))
+  }
+  const removeItem = (item)=>{
+    dispatch(delItem(item))
   }
   useEffect(()=>{
    dispatch(getTotals())  
@@ -36,21 +39,26 @@ const Card = () => {
           <h5 className=" text-mocha">{item.name}</h5>
           <h6 className="text-mocha">รายละเอียดต่างๆ</h6>
           </div></div>
-          <div className="inline-flex h-min gap-4">
-            <h4>{item.price}</h4>
-            <div className=" flex justify-between items-center w-16 ">
-            <AiOutlineMinus onClick={()=> decrease(item)} className=" cursor-pointer hover:fill-red-500 duration-300 "/>
+          <div className="inline-flex flex-col justify-between gap-4">
+          <div className=" flex">
+            <h4>{item.price} ฿</h4>
+            <div className=" flex justify-between  items-center w-24 ">
+            <AiOutlineMinus onClick={()=> decrease(item)} className=" border-r-2 w-8 opacity-30 hover:opacity-100 cursor-pointer hover:fill-red-500 duration-300 "/>
             <h2>{item.caretQuantity}</h2>
-            <AiOutlinePlus onClick={()=> increase(item) } className=" cursor-pointer hover:fill-green-500 duration-300"/>
+            <AiOutlinePlus onClick={()=> increase(item) } className=" border-l-2 opacity-30 hover:opacity-100 w-8 cursor-pointer hover:fill-green-500 duration-300"/>
             </div>
-            <h3>{item.price * item.caretQuantity}</h3>
-          </div>
+            <h3>{item.price * item.caretQuantity} ฿</h3></div>
+            <div className=" flex justify-end items-end">
+              <h4 onClick={()=> removeItem(item)} className=" hover:bg-red-500 text-mocha w-[5rem] h-[2rem] flex justify-center items-center rounded-[10px] hover:text-white border-2 cursor-pointer duration-300 text-[16px] border-red-500">ลบสินค้า</h4>
+            </div>
+            </div>
+          
         </div>
           )
         })}</>}        
         {/* ITEM */}
       </div>
-      <div className="h-full w-min gap-4 flex flex-col">
+      <div className="h-full w-min gap-4 flex flex-col sticky top-6 duration-300">
         <div className=" border-2 border-cream w-[20rem] h-min p-1 text-[16px]">
           <h3 className="text-mocha">สรุปยอด</h3>
           <div className=" flex justify-between border-t-2 border-whip py-1">
