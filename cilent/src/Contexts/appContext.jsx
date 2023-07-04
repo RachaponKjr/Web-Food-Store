@@ -12,20 +12,22 @@ export const useAppContext = () =>{
 }
 
 const AppContextProvider = ({children}) => {
-    const [favorites, setFavorites] = useState([])
-
+    const [favorites, setFavorites] = useState(()=>{
+        const saved = localStorage.getItem("favItem")
+        const initialValue = JSON.parse(saved)
+        return initialValue || []
+    })
     const addToFavorites = (item) =>{
         const oldItem = [...favorites]
         const newItem = oldItem.concat(item)
-
         setFavorites(newItem)
+        localStorage.setItem("favItem",JSON.stringify(newItem))
     }
     const removeToFavorites = (id) =>{
-
         const oldItem = [...favorites]
         const newItem = oldItem.filter((item) => item.id !== id)
-
         setFavorites(newItem)
+        localStorage.setItem("favItem",JSON.stringify(newItem))
     }
 
     const favItem = () =>{

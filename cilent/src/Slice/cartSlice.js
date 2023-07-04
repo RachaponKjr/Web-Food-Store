@@ -24,9 +24,6 @@ const cartSlice = createSlice({
                     localStorage.setItem("carts",JSON.stringify(state.itemCart))
                 }
         },
-        removeItem(state,action){
-            state.itemCart = state.itemCart.filter(item => item.id !== action.payload)
-        },
         increaseItem(state,action){
             const findItem = state.itemCart.find(item => item.id === action.payload.id)
                 findItem.caretQuantity++
@@ -61,6 +58,7 @@ const cartSlice = createSlice({
         delItem(state, action){
             const delItem = state.itemCart.filter((item)=>item.id !== action.payload.id)
             state.itemCart = delItem
+            localStorage.setItem("carts",JSON.stringify(state.itemCart))
             toast.warning(`ลบ ${action.payload.name} เรียบร้อย`,{position:"bottom-right"}) 
         }
     },
